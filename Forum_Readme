@@ -1,0 +1,65 @@
+Hi, 
+
+the Wagendorf Forum is a small Forum extension unsing three Special Pages making a  nice forum in your Wiki, 
+it is still very crappy code, but almost localized. 
+
+INSTALL:
+
+1. untar the archive in your MediaWiki Document Root.  
+
+2. create the forum tables:
+
+create table forum_thread (
+       id INT(5) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+       user INT(5),
+       topic VARCHAR(255),
+       relevance DATETIME,
+       article_count INT(5),
+       view_count INT(5)
+    );
+Query OK, 0 rows affected (0.03 sec)
+
+create table forum_article (
+       id INT(5) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+       user INT(5),
+       date DATETIME,
+       thread INT(5) NOT NULL,
+       topic VARCHAR(255),
+       text TEXT
+    );
+
+
+3. do an include("extensions/Forum.php"); in your LocalSettings.php
+
+4. Pray
+
+PROBLEMS:
+
+This is still a german Wiki, so you may have to localize it by yourself, and maybe 
+it will not work in your environment.
+
+If you found a Bug, please report it to: zem_at_messwagen42.de 
+
+USAGE: 
+
+you can either use the Special page Special:Forum or you can display the last 10 topics of the 
+forum on a wiki page by using 
+
+<showforum></showforum>
+
+you can show a thread within a discussion page by making a tag like 
+
+<showthread>number</showthread>
+
+where number is the thread number, for example to show thread 5 use: 
+
+<showthread>5</showthread>
+
+best regards 
+    Hans Freitag 
+ 
+---
+
+NOTE_TARCOMMAND:
+
+tar cvfz downloads/forum_0.1.tar.gz Forum_Readme includes/SpecialWriteArticle.php includes/SpecialForum.php includes/SpecialThread.php extensions/Forum.php extensions/ForumClass.php
